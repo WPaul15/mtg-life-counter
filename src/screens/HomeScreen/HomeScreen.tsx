@@ -1,11 +1,12 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackScreenProps } from '@react-navigation/stack';
 import { StyleSheet, View } from 'react-native';
 import { Button, MD3Theme, Switch, Text } from 'react-native-paper';
-import { RootStackParamList } from '../../App';
 import { usePreferences } from '../../context/PreferencesContext';
+import { RootStackParamList } from '../../navigation/NavigationStack';
+import { RouteNames } from '../../navigation/constants';
 
 interface HomeScreenProps
-  extends NativeStackScreenProps<RootStackParamList, 'Home'> {}
+  extends StackScreenProps<RootStackParamList, RouteNames.Home> {}
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { toggleTheme, isDarkTheme, theme } = usePreferences();
@@ -16,7 +17,9 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
         Home Screen
       </Text>
       <Switch theme={theme} value={isDarkTheme} onValueChange={toggleTheme} />
-      <Button mode="contained" onPress={() => navigation.navigate('Details')}>
+      <Button
+        mode="contained"
+        onPress={() => navigation.navigate(RouteNames.Details)}>
         Go to details
       </Button>
     </View>
