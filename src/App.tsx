@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   PreferencesProvider,
   usePreferences,
@@ -10,13 +11,15 @@ const App = () => {
   const { theme } = usePreferences();
 
   return (
-    <PreferencesProvider>
-      <PaperProvider theme={theme}>
-        <NavigationContainer theme={theme}>
-          <RootStack />
-        </NavigationContainer>
-      </PaperProvider>
-    </PreferencesProvider>
+    <SafeAreaProvider>
+      <PreferencesProvider>
+        <PaperProvider theme={theme}>
+          <NavigationContainer theme={theme}>
+            <RootStack />
+          </NavigationContainer>
+        </PaperProvider>
+      </PreferencesProvider>
+    </SafeAreaProvider>
   );
 };
 

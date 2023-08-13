@@ -19,8 +19,8 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
       <Switch theme={theme} value={isDarkTheme} onValueChange={toggleTheme} />
       <Button
         mode="contained"
-        onPress={() => navigation.navigate(RouteNames.Details)}>
-        Go to details
+        onPress={() => navigation.navigate(RouteNames.LifeCounter)}>
+        Go to Life Counter
       </Button>
     </View>
   );

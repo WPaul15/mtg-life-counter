@@ -2,13 +2,13 @@ import { StyleSheet, View } from 'react-native';
 import { MD3Theme, Text } from 'react-native-paper';
 import { usePreferences } from '../../context/PreferencesContext';
 
-export const DetailsScreen = () => {
+export const LifeCounterScreen = () => {
   const { theme } = usePreferences();
 
   return (
     <View style={styles(theme).view}>
       <Text variant="displayMedium" theme={theme}>
-        Details Screen
+        Life Counter Screen
       </Text>
     </View>
   );

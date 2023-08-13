@@ -1,0 +1,1 @@
+export { LifeCounterScreen } from './LifeCounterScreen';
