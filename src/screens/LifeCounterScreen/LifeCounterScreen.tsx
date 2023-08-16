@@ -1,26 +1,22 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { IconButton, MD3Theme, Text } from 'react-native-paper';
+import { Button, IconButton, MD3Theme, Text } from 'react-native-paper';
 import { usePreferences } from '../../context/PreferencesContext';
-
-enum Direction {
-  Positive,
-  Negative,
-}
+import { Direction, Value, useSession } from '../../context/SessionContext';
 
 export const LifeCounterScreen = () => {
-  const timer = useRef<NodeJS.Timeout>();
-  const [lifeTotal, setLifeTotal] = useState<number>(40);
-
   const { theme } = usePreferences();
+  const { lifeTotal, timesCast, increment, decrement, reset } = useSession();
+
+  const timer = useRef<NodeJS.Timeout>();
 
   const changeLifeTotal = (direction: Direction) => {
     switch (direction) {
       case Direction.Positive:
-        setLifeTotal(prevTotal => prevTotal + 1);
+        increment(Value.LifeTotal);
         break;
       case Direction.Negative:
-        setLifeTotal(prevTotal => prevTotal - 1);
+        decrement(Value.LifeTotal);
         break;
       default:
     }
@@ -58,11 +54,35 @@ export const LifeCounterScreen = () => {
           onPressIn={() => changeLifeTotal(Direction.Negative)}
           onPressOut={stopTimer}
         />
+        <Button mode="contained" theme={theme} onPress={reset}>
+          Reset
+        </Button>
       </View>
       <View style={styles(theme).rightContainer}>
-        <Text variant="displayMedium" theme={theme}>
-          Life Counter Screen
-        </Text>
+        <View>
+          <View style={styles(theme).castContainer}>
+            <Text variant="titleMedium" theme={theme}>
+              Times Cast
+            </Text>
+            <IconButton
+              mode="outlined"
+              icon="minus"
+              size={8}
+              theme={theme}
+              onPress={() => decrement(Value.TimesCast)}
+            />
+            <Text variant="titleMedium" theme={theme}>
+              {timesCast}
+            </Text>
+            <IconButton
+              mode="outlined"
+              icon="plus"
+              size={8}
+              theme={theme}
+              onPress={() => increment(Value.TimesCast)}
+            />
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -84,5 +104,9 @@ const styles = (theme: MD3Theme) =>
     rightContainer: {
       flex: 2,
       backgroundColor: theme.colors.secondaryContainer,
+    },
+    castContainer: {
+      flexDirection: 'row',
+      alignItems: 'baseline',
     },
   });

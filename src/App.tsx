@@ -5,6 +5,7 @@ import {
   PreferencesProvider,
   usePreferences,
 } from './context/PreferencesContext';
+import { SessionProvider } from './context/SessionContext';
 import RootStack from './navigation/NavigationStack';
 
 const App = () => {
@@ -15,7 +16,9 @@ const App = () => {
       <PreferencesProvider>
         <PaperProvider theme={theme}>
           <NavigationContainer theme={theme}>
-            <RootStack />
+            <SessionProvider>
+              <RootStack />
+            </SessionProvider>
           </NavigationContainer>
         </PaperProvider>
       </PreferencesProvider>
