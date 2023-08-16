@@ -10,7 +10,7 @@ enum Direction {
 
 export const LifeCounterScreen = () => {
   const timer = useRef<NodeJS.Timeout>();
-  const [lifeTotal, setLifeTotal] = useState(40);
+  const [lifeTotal, setLifeTotal] = useState<number>(40);
 
   const { theme } = usePreferences();
 
@@ -31,7 +31,7 @@ export const LifeCounterScreen = () => {
 
     timer.current = setTimeout(() => {
       changeLifeTotal(direction);
-    }, 200);
+    }, 150);
   };
 
   const stopTimer = () => {
@@ -71,11 +71,8 @@ export const LifeCounterScreen = () => {
 const styles = (theme: MD3Theme) =>
   StyleSheet.create({
     rootContainer: {
-      // flex: 1,
-      // alignItems: 'center',
-      // justifyContent: 'center',
-      flexDirection: 'row',
       flex: 1,
+      flexDirection: 'row',
       backgroundColor: theme.colors.surface,
     },
     leftContainer: {
