@@ -33,8 +33,8 @@ export const useSession = () => {
 interface SessionProviderProps extends PropsWithChildren {}
 
 export const SessionProvider = ({ children }: SessionProviderProps) => {
-  const [lifeTotal, setLifeTotal] = useState<number>(40);
-  const [timesCast, setTimesCast] = useState<number>(0);
+  const [lifeTotal, setLifeTotal] = useState<number>(initialSession.lifeTotal);
+  const [timesCast, setTimesCast] = useState<number>(initialSession.timesCast);
 
   const getNewValue = (prev: number, direction: Direction): number => {
     if (direction === Direction.Positive) {
