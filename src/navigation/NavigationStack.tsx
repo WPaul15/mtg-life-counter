@@ -1,12 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { usePreferences } from '../context/PreferencesContext';
-import { DetailsScreen } from '../screens/DetailsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
+import { LifeCounterScreen } from '../screens/LifeCounterScreen';
 import { RouteNames } from './constants';
 
 export type RootStackParamList = {
   Home: undefined;
-  Details: undefined;
+  LifeCounter: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -26,12 +26,17 @@ const RootStack = () => {
           backgroundColor: theme?.colors.surface,
         },
         headerTintColor: theme?.colors.text,
+        gestureEnabled: true,
       }}>
       {/* screenOptions={{
         header: Header,
       }}> */}
       <Stack.Screen name={RouteNames.Home} component={HomeScreen} />
-      <Stack.Screen name={RouteNames.Details} component={DetailsScreen} />
+      <Stack.Screen
+        name={RouteNames.LifeCounter}
+        component={LifeCounterScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,4 +1,4 @@
 export enum RouteNames {
   Home = 'Home',
-  Details = 'Details',
+  LifeCounter = 'LifeCounter',
 }
