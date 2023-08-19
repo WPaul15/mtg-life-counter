@@ -41,9 +41,9 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
       return prev + 1;
     } else if (direction === Direction.Negative && prev > 0) {
       return prev - 1;
+    } else {
+      return prev;
     }
-
-    return prev;
   };
 
   const changeValue = useCallback((value: Value, direction: Direction) => {
